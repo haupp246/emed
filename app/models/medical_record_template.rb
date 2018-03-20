@@ -4,10 +4,10 @@ class MedicalRecordTemplate
    
   accepts_nested_attributes_for :question  ,:reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   belongs_to :hospital
-  before_create :numbered_question
-  before_update :numbered_question
+  before_save :remove_answer,:numbered_question
   
- 
+
+  
   
   field :name, type: String
   field :code, type: String
@@ -27,4 +27,12 @@ class MedicalRecordTemplate
       
     
   end
+  def remove_answer
+    for question in self.question
+        if (question.short_answer?) 
+            question.multiple_choice_question_answer.destroy_all
+        end
+    end
+  end
+
 end

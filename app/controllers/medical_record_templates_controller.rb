@@ -76,7 +76,7 @@ class MedicalRecordTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medical_record_template_params
-      params.require(:medical_record_template).permit(:name, :code, :question_attributes => [:question_qtype, :content, :qid, :multiple_choice_question_answer_attributes => [:multiple_choice_question_answer_type, :content, :aid]])
+      params.require(:medical_record_template).permit(:name, :code, :question_attributes => [:qtype, :content, :qid,:_destroy,:id, :multiple_choice_question_answer_attributes => [:id,:_destroy,:multiple_choice_question_answer_type, :content, :aid]])
     end
     
     

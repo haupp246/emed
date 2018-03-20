@@ -1,0 +1,41 @@
+<%= form_for(@medical_record_template) do |f| %>
+  <% if @medical_record_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@medical_record_template.errors.count, "error") %> prohibited this medical_record_template from being saved:</h2>
+
+      <ul>
+      <% @medical_record_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  
+    <div class="mcquestion_fields">
+      <%= f.fields_for :question do |builder| %>
+        <%= render "question_fields", :f => builder %>
+       
+      <% end %>
+      
+      <div class="add_question">
+      
+    
+       <%= link_to_add_association 'Add Question', f, :question, class: 'btn btn-primary', data: { link_to_add_association: '.add_question', association_insertion_method: :before, partial: 'multiple_choice_question_fields' } %>
+        
+      </div>
+    </div>
+   
+  <div class="actions">
+    
+      <%= f.submit %>
+  </div>
+<% end %>

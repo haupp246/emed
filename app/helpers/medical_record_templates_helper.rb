@@ -1,0 +1,2 @@
+module MedicalRecordTemplatesHelper
+end

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Medical Record Templates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Hospital</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medical_record_templates.each do |medical_record_template| %>
+      <tr>
+        <td><%= medical_record_template.name %></td>
+        <td><%= medical_record_template.code %></td>
+        <td><%= medical_record_template.hospital.name %></td>
+        <td><%= link_to 'Show', medical_record_template %></td>
+        <td><%= link_to 'Edit', edit_medical_record_template_path(medical_record_template) %></td>
+        <td><%= link_to 'Destroy', medical_record_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Medical record template', new_medical_record_template_path %>

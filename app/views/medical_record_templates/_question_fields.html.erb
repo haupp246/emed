@@ -1,0 +1,17 @@
+<div class='mc_questions'>
+  <%= f.label :content, "Question" %> <%= link_to_remove_association "Remove question", f, {class: 'btn btn-primary btn-xs',wrapper_class: 'mc_questions'} %><br />
+  <%= f.text_area :content, :rows => 2 %><br />
+ 
+
+<div class= 'mc_answer_fields'>
+<%= f.fields_for :multiple_choice_question_answer do |builder| %>
+  <%= render 'multiple_choice_question_answer_fields', :f => builder %>
+<% end %>
+<div class ='add_answer'>
+<%= link_to_add_association 'Add Answer', f, :multiple_choice_question_answer, class: 'btn btn-primary', data: {link_to_add_association: '.add_answer', association_insertion_method: :before } %>
+</div>
+</div>
+ 
+ <br/>
+ 
+</div>

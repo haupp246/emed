@@ -1,0 +1,9 @@
+vi:
+  hello: "Hello world"
+  will_paginate:
+    page_gap: "....."
+    previous_label: "Trước"
+    next_label: "Sau"
+  edit: "Chỉnh sửa"
+  show: "Xem"
+  destroy: "Xóa"

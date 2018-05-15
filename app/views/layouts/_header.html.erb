@@ -1,0 +1,53 @@
+
+<div class="ui inverted menu">
+  <div class="header item">Emed</div>
+  <div class="right menu">
+<% if user_signed_in? || patient_signed_in? %>
+
+  <% if current_user.hospital %>
+     
+        <div class="ui dropdown item" tabindex="0">
+       <%= current_user.hospital.name %>
+        <i class="dropdown icon"></i>
+        <div class="menu transition hidden" tabindex="-1">
+         
+             <div class ="item" style="background: black!important">
+              
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            </div>
+        </div>
+      </div>
+  <% end %>
+  <% if current_patient %>
+     
+        <div class="ui dropdown item" tabindex="0">
+       <%= current_patient.email %>
+        <i class="dropdown icon"></i>
+        <div class="menu transition hidden" tabindex="-1">
+         
+             <div class ="item" style="background: black!important">
+              
+              <%= link_to "Sign out", destroy_patient_session_path, method: :delete %>
+            </div>
+        </div>
+      </div>
+  <% end %>
+<% else %>
+
+    <div class ="item">
+      
+    <%= link_to "Sign in", new_user_session_path %>
+    </div>
+   <div class ="item">
+      <%= link_to "Sign up", new_user_registration_path %>
+   </div>
+<% end %>
+    </div>
+    
+  </div>
+</div>
+<script>
+ $(document).ready(function() {
+    $('.ui.dropdown').dropdown();
+});
+</script>

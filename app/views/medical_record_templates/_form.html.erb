@@ -1,3 +1,4 @@
+<div class="ui form">
 <%= form_for(@medical_record_template) do |f| %>
   <% if @medical_record_template.errors.any? %>
     <div id="error_explanation">
@@ -20,7 +21,7 @@
     <%= f.text_field :code %>
   </div>
   
-    <div class="mcquestion_fields">
+    <div class="ui segments mcquestion_fields">
       <%= f.fields_for :question do |builder| %>
         <%= render "question_fields", :f => builder %>
        
@@ -29,13 +30,15 @@
       <div class="add_question">
       
     
-       <%= link_to_add_association 'Add Question', f, :question, class: 'btn btn-primary', data: { link_to_add_association: '.add_question', association_insertion_method: :before, partial: 'multiple_choice_question_fields' } %>
+       <%= link_to_add_association 'Add Question', f, :question, class: 'ui blue button',style: 'margin:20px', data: { link_to_add_association: '.add_question', association_insertion_method: :before, partial: 'multiple_choice_question_fields' } %>
         
       </div>
+      <br/>
     </div>
    
   <div class="actions">
     
-      <%= f.submit %>
+      <%= f.submit class: 'ui blue button' %>
   </div>
 <% end %>
+</div>

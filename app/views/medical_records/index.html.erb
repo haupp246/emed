@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+  <div class="ui secondary menu">
+    <div class="right menu">
+      <div class="item" >
+          <%= form_tag medical_record_template_medical_records_path, method: :get do %>
+          <div class="ui action left icon input">
+              <i class="search icon"></i>
+              <%= text_field_tag :search, params[:search],placeholder: 'RecordID  or patientID ...' %>
+              <%= button_tag "Search", name: nil, class: "ui teal button", data: {disable_with: "<i class='fa fa-spinning fa-fw'></i> Searching..."} %>
+          </div>
+          <% end %>
+        
+      </div>
+    </div>
+  </div>
+<h1>Listing Medical Records</h1>
+
+<table class="ui fixed striped sortable celled table">
+  <thead>
+    <tr>
+      <th style="width:20%">ID</th>
+      <th>Patient</th>
+      <th>Patient ID</th>
+      <th>Created at</th>
+      <th colspan="3" style="width:30%">
+        Action
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medical_records.each do |medical_record| %>
+      <tr>
+    
+         <td><%=medical_record.id %></td>
+          <td><%= medical_record.patient.name %></td>
+          <td><%= medical_record.patient.id %></td>
+           <td><%= medical_record.created_at.to_date %></td>
+        <td><%= link_to 'Show', [medical_record.medical_record_template,medical_record] %></td>
+        <td><%= link_to 'Edit', edit_medical_record_template_medical_record_path(medical_record.medical_record_template,medical_record) %></td>
+        <td><%= link_to 'Destroy', [medical_record.medical_record_template,medical_record], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @medical_records %>
+<br>
+
+<%= link_to 'New Medical record', new_medical_record_template_medical_record_path %>
+<%= link_to 'Back to template', medical_record_template_path(params[:medical_record_template_id]) %>

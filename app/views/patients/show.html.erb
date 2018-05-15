@@ -1,0 +1,78 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @patient.dob.to_date %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @patient.job %>
+</p>
+
+<p>
+  <strong>Ethnic:</strong>
+  <%= @patient.ethnic %>
+</p>
+
+<p>
+  <strong>Oversea:</strong>
+  <%= @patient.oversea %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @patient.address %>
+</p>
+
+<p>
+  <strong>Workplace:</strong>
+  <%= @patient.workplace %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @patient.phone %>
+</p>
+<p>
+  <strong>Id:</strong>
+  <%= @patient.id %>
+</p>
+<h2>Medical Records List</h2>
+<p>
+  <table class="ui fixed striped sortable celled table">
+  <thead>
+    <tr>
+      
+      <th>Hospital</th>
+      <th>Name</th>
+      <th>Created at</th>
+      <th colspan="1" style="width:10%">
+        Action
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medical_records.each do |medical_record| %>
+      <tr>
+    
+         <td><%=medical_record.medical_record_template.hospital.name %></td>
+          <td><%= medical_record.medical_record_template.name %></td>
+          <td><%= medical_record.created_at.to_date %></td>
+        <td><%= link_to 'Show', [medical_record.medical_record_template,medical_record] %></td>
+   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  
+</p>
+<% if can? :update, @patient %>
+<%= link_to 'Edit', edit_patient_path(@patient) %> |
+<% end %>
+<%= link_to 'Back', patients_path %>

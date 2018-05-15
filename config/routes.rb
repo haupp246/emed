@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :medical_record_templates
+  
+  devise_for :patients, path: 'patients',:skip => [:registrations] , :controllers =>{ :sessions => "patient/sessions"}
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  resources :patients
+  resources :medical_record_templates do
+    resources :medical_records
+  end
   resources :hospitals, params: :code
   devise_for :users, :controllers => { :registrations => "users/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.

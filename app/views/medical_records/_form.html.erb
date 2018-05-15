@@ -1,0 +1,150 @@
+<div class="ui form">
+<%= form_for( [@medical_record.medical_record_template, @medical_record]) do |f| %>
+  <% if @medical_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@medical_record.errors.count, "error") %> prohibited this medical_record from being saved:</h2>
+
+      <ul>
+        
+      <% @medical_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      
+      </ul>
+    </div>
+  <% end %>
+<% if current_page?(action: 'new') %>
+<div class = "inline field">
+      <%= f.label :patient, "Patient ID" %>
+      <%= f.collection_select :patient_id, @patients,:id,:id %>
+      </div>
+<% end %>
+  <br>
+  <h2><%= @medical_record.medical_record_template.name %><br></h2>
+  <div class="ui segments">
+  <% if current_page?(action: 'new') %>
+     
+  <% for question in @template.question %>
+    <%= f.fields_for :answer do |builder|  %>
+    <div class="ui segment">
+    <h4>    
+      <%= question.qid %>
+      <%= question.content %><br/> </h4>
+      <p>
+     
+      
+          <%= builder.hidden_field :question_id, value: question.id.to_s %>
+          <%= builder.hidden_field :question_content, value: question.content %>
+          <%= builder.hidden_field :qtype, value: question.qtype %>
+        <% case question.qtype %>
+         <% when :short_answer %>
+        
+           <% case question.atype %>
+               <% when :text %>
+              <%= builder.text_field :short_answer %>
+              <% when :number %>
+               <%= builder.number_field :short_answer %>
+              <% when :date %>
+                <%= builder.date_field :short_answer %>  
+                
+            <% end %>
+         <% when :multiple_choice %>
+   
+        <%= builder.collection_radio_buttons :choice, question.multiple_choice_question_answer,:content, :content %>
+         <% when :check_box %>
+         
+             <%= builder.collection_check_boxes :check_box, question.multiple_choice_question_answer,:content, :content %>
+        <% end %>
+           <br>
+           <% if question.sub_question %>
+                <%= builder.hidden_field :sub_question_id, value: question.sub_question.id.to_s %>
+                <div class = "inline field">
+               <%= question.sub_question.content %> :
+                    <% case question.sub_question.atype %>
+                      <% when :text %>
+                      <%= builder.text_field :sub_question_answer %>
+                      <% when :number %>
+                       <%= builder.number_field :sub_question_answer %>
+                      <% when :date %>
+                        <%= builder.date_field :sub_question_answer %>  
+                        
+                    <% end %>
+                </div>
+           <% end %>
+     
+   </p>
+   <br>
+   </div>
+ 
+   <% end %>
+
+ <% end %>
+<% else %>
+  
+      <%= f.fields_for :answer do |builder|  %>
+      
+        <%question = @medical_record.medical_record_template.question.find(builder.object.question_id)%>
+    
+    
+         <div class="ui segment">
+             <div class="field">
+           <h4>
+      <%= question.qid %>
+      <%= question.content %><br/></h4>
+      <p>
+     
+      
+          <%= builder.hidden_field :question_id, value: question.id.to_s %>
+          <%= builder.hidden_field :question_content, value: question.content %>
+          <%= builder.hidden_field :qtype, value: question.qtype %>
+        <% case question.qtype %>
+         <% when :short_answer %>
+         
+              <% case question.atype %>
+               <% when :text %>
+              <%= builder.text_field :short_answer %>
+              <% when :number %>
+               <%= builder.number_field :short_answer %>
+              <% when :date %>
+                <%= builder.date_field :short_answer %>  
+                
+            <% end %>
+
+         <% when :multiple_choice %>
+   
+        <%= builder.collection_radio_buttons :choice, question.multiple_choice_question_answer,:content, :content,style: 'padding-right:30px' %>
+         <% when :check_box %>
+         
+             <%= builder.collection_check_boxes :check_box, question.multiple_choice_question_answer,:content, :content, 'padding-right:30px' %>
+        <% end %>
+           
+         <br>
+           <% if question.sub_question %>
+                <%= builder.hidden_field :sub_question_id, value: question.sub_question.id.to_s %>
+                <div class = "inline field">
+               <%= question.sub_question.content %> :
+                    <% case question.sub_question.atype %>
+                      <% when :text %>
+                      <%= builder.text_field :sub_question_answer %>
+                      <% when :number %>
+                       <%= builder.number_field :sub_question_answer %>
+                      <% when :date %>
+                        <%= builder.date_field :sub_question_answer %>  
+                        
+                    <% end %>
+                </div>
+           <% end %>
+   </p>
+
+   
+   <br>
+   </div>
+   </div>
+       <% end %>
+<% end %>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

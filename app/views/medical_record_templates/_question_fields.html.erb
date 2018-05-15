@@ -1,16 +1,30 @@
-<div class='mc_questions'>
-  <%= f.label :content, "Question" %> <%= link_to_remove_association "Remove question", f, {class: 'btn btn-primary btn-xs',wrapper_class: 'mc_questions'} %><br />
+<div class='ui segment mc_questions'>
+  
+  <%= f.label :content, "Question" %>  <%= link_to_remove_association "Remove question", f, {class: 'ui inverted red button',wrapper_class: 'mc_questions'} %><br />
   <%= f.text_area :content, :rows => 2 %><br />
-  <%= f.label :qtype, "Question type:" %>
-  <%= f.select :qtype, {'Short Answer': :short_answer, 'Multiple Choice': :multiple_choice, 'Check Box': :check_box} %>
-
-<div class= 'mc_answer_fields'>
-<%= f.fields_for :multiple_choice_question_answer do |builder| %>
-  <%= render 'multiple_choice_question_answer_fields', :f => builder %>
-<% end %>
-<div class ='add_answer'>
-<%= link_to_add_association 'Add Answer', f, :multiple_choice_question_answer, class: 'btn btn-primary', data: {link_to_add_association: '.add_answer', association_insertion_method: :before } %>
-</div>
+  <div class= 'ui inline field'>
+    <%= f.label :qtype, "Question type:" %>
+    <%= f.select :qtype, {'Short Answer': :short_answer, 'Multiple Choice': :multiple_choice, 'Check Box': :check_box} %>
+   
+  
+    <%= f.label :qtype, "Answer type:" %>
+    <%= f.select :atype, {'Text': :text, 'Number': :number, 'Date': :date} %>
+  </div>
+  <div class= 'ui mc_answer_fields'>
+    <%= f.fields_for :multiple_choice_question_answer do |builder| %>
+      <%= render 'multiple_choice_question_answer_fields', :f => builder %>
+    <% end %>
+  <div class ='add_answer'>
+  <%= link_to_add_association 'Add Answer', f, :multiple_choice_question_answer, class: 'ui inverted green button', data: {link_to_add_association: '.add_answer', association_insertion_method: :before } %>
+  </div>
+  <div class ='ui mc_sub_question'>
+     <%= f.fields_for :sub_question do |builder| %>
+      <%= render 'sub_question_fields', :f => builder %>
+    <% end %>
+  <div class ='sub_question'>
+    <%= link_to_add_association 'Add Sub Question', f, :sub_question, id:'sub_question_button',class: 'ui  teal button', data: {link_to_add_association: '.sub_question', association_insertion_method: :before } %>
+  </div>
+  </div>
 </div>
  
  <br/>

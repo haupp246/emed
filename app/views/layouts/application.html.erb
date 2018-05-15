@@ -7,19 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<% if user_signed_in? %>
-<h3>Hello, <%= current_user.email %></h3>
-  <% if current_user.hospital%>
-      <%= current_user.hospital.name %>
-    <% end %>
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "Sign in", new_user_session_path %>
-<%= link_to "Sign up", new_user_registration_path %>
-<% end %>
+<%= render 'layouts/header' %>
+<div class="ui container">
 
 <%= yield %>
-
+</div>
 </body>
 </html>

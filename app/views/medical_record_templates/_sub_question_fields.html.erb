@@ -1,0 +1,11 @@
+<div class = 'mc_sub_question'>
+<div class = 'field'>
+  <%= f.label :content, "Sub question" %>
+  <%= f.text_area :content ,:rows => 2%>
+   <div class= 'ui inline field'>
+    <%= f.label :atype, "Question type:" %>
+    <%= f.select :atype, {'Text': :text, 'Number': :number, 'Date': :date} %>
+  </div>
+  <%= link_to_remove_association "Remove", f, {class: 'ui inverted red button',wrapper_class: 'mc_sub_question'} %>
+  </div>
+</div>

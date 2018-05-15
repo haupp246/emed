@@ -1,5 +1,9 @@
 class Hospital
   include Mongoid::Document
+  # include Mongoid::Tenancy
+  # store_in database: ->{ Thread.current[:database] }
+  # tenant_key :url
+  
   field :code, type: String
   field :name, type: String
   field :address, type: String
@@ -11,4 +15,5 @@ class Hospital
   has_one :user,  dependent: :destroy
  
   has_many :medical_record_template, dependent: :destroy
+  # has_tenant :medical_record_template
 end

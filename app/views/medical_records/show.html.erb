@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+ <%# @medical_record.as_json(:except => :_id).merge('_id' => @medical_record.id).to_json %>
+<br>
+<div class='ui vertically divided grid'>
+    <div class="two column row">
+    <div class="column">
+      Name: <%= link_to @medical_record.patient.name, @medical_record.patient %> <br/>
+      Gender: <%= @medical_record.patient.gender %> <br/>
+      Ethnic: <%= @medical_record.patient.ethnic %> <br/>
+      Address <%= @medical_record.patient.address %> <br/>
+      Workplace <%= @medical_record.patient.workplace %> <br/>
+    </div>
+    <div class="column">
+      Date of birth: <%= @medical_record.patient.dob.to_date %> <br/>
+      Job: <%= @medical_record.patient.job %> <br/>
+      Oversea: <%= @medical_record.patient.oversea %> <br/>
+      Phone: <%= @medical_record.patient.phone %>
+    </div>
+  </div>
+</div>
+
+<% @medical_record.answer.each do |answer| %>
+<br>
+ <%question = @medical_record.medical_record_template.question.find( answer.question_id )%>
+    <h4>
+  <%= question.qid %>. <%= question.content %>:
+    </h4>
+    <% case answer.qtype %>
+         <% when :short_answer %>
+               
+            <%= answer.short_answer %>
+
+         <% when :multiple_choice %>
+            <%= answer.choice %>
+         <% when :check_box %>
+            <% answer.check_box.each do |check_box| %>
+                <%= check_box %> 
+            <% end %>
+    <% end %>
+    
+    <% if answer.sub_question_id %>
+         <br >
+           <% sub_question = question.sub_question %>
+           <div style= "padding-left:20px">
+               <%= sub_question.content %>: <%= answer.sub_question_answer %>
+           </div>
+    <% end %>
+    
+<% end %>
+<br>
+<%= link_to 'Back', medical_record_template_medical_records_path %>
+<% if can? :update, @patient %>
+<%= link_to 'Edit', edit_medical_record_template_medical_record_path(@medical_record.medical_record_template,@medical_record) %>
+<% end %>

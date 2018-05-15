@@ -1,0 +1,63 @@
+
+<p id="notice"><%= notice %></p>
+  
+  <div class="ui secondary menu">
+    <div class="right menu">
+      <div class="item" >
+          <%= form_tag patients_path, method: :get do %>
+          <div class="ui action left icon input">
+              <i class="search icon"></i>
+              <%= text_field_tag :search, params[:search],placeholder: 'Search ...' %>
+              <%= button_tag "Search", name: nil, class: "ui teal button", data: {disable_with: "<i class='fa fa-spinning fa-fw'></i> Searching..."} %>
+          </div>
+          <% end %>
+        
+      </div>
+    </div>
+  </div>
+
+<h1>Listing Patients</h1>
+
+<table class="ui fixed striped sortable celled table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Dob</th>
+      <th>Job</th>
+      <th>Ethnic</th>
+      <th>Oversea</th>
+      <th>Address</th>
+      <th>Workplace</th>
+   
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.id %></td>
+        <td><%= patient.name %></td>
+        <td><%= patient.dob.to_date %></td>
+        <td><%= patient.job %></td>
+        <td><%= patient.ethnic %></td>
+        <td><%= patient.oversea %></td>
+        <td><%= patient.address %></td>
+        <td><%= patient.workplace %></td>
+        
+        <td><%= link_to 'Show', patient %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+ 
+  </tbody>
+       
+</table>
+ 
+<br>
+<b>Total: <%= @patients.count %></b>
+<br>
+<%= will_paginate @patients %>
+<%= link_to 'New Patient', new_patient_path, :class => "ui teal button" %>

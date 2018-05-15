@@ -14,6 +14,7 @@ gem 'coffee-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -21,14 +22,25 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-
 gem 'mongoid'
 gem "mongoid-enum"
+gem 'mongoid-multitenancy', '~> 1.2'
 gem 'bson_ext'
 gem 'devise'
-gem 'semantic-ui-sass'
 gem "cocoon"
 gem 'mongoid_auto_increment'
+gem 'ransack', '< 1.8.7'
+gem 'activeadmin', '~> 1.1'
+gem 'activeadmin-mongoid', github: 'elia/activeadmin-mongoid', branch: 'rails4-mongoid5'
+gem 'kaminari-mongoid'
+gem 'faker'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate_mongoid', '~> 2.0', '>= 2.0.1'
+gem 'stripe'
+gem "cancancan"
+
+
+gem 'semantic-ui-sass'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -3,8 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
    before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
-  before_filter :authenticate_user!, :except => [:index]
- 
+  # before_filter :authenticate_user! || :authenticate_patient!
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      format.html { redirect_to root_url, notice: "Bạn không có quyền truy cập!" }
+      format.js   { head :forbidden, content_type: 'text/html' }
+    end
+  end
    
    def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
@@ -15,9 +21,23 @@ class ApplicationController < ActionController::Base
  
    
   def user_signed_in
-    return if current_user
+    return if current_user 
     flash[:danger] = "Signed in first."
     # redirect_to root_url
   end
-  
+  def patient_signed_in
+    return if current_patient 
+    flash[:danger] = "Signed in first."
+    # redirect_to root_url
+  end
+#   def current_tenant
+#       current_tenant = current_user.
+#   end
+  def current_ability
+    if patient_signed_in?
+      @current_ability ||= Ability.new(current_patient)
+    else
+      @current_ability ||= Ability.new(current_user)
+    end
+  end
 end

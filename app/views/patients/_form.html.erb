@@ -1,0 +1,66 @@
+<div class ="ui grid">
+  <div class ="three wide column"></div>
+  <div class ="ten wide column">
+<div class="ui form">
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br>
+    <%= f.date_field :dob %>
+  </div>
+  <div class="inline field ">
+    <%= f.label :gender %> <br>
+    
+     <%= f.collection_radio_buttons :gender, Patient::GENDER, :first, :first %>
+  </div>
+  <div class="field">
+    <%= f.label :job %><br>
+    <%= f.text_field :job %>
+  </div>
+  <div class="field">
+    <%= f.label :ethnic %><br>
+    <%= f.text_field :ethnic %>
+  </div>
+  <div class="field">
+    <%= f.label :oversea %><br>
+    <%= f.text_field :oversea %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :workplace %><br>
+    <%= f.text_field :workplace %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :id %><br>
+    <%= f.text_field :id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>

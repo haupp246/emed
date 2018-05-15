@@ -1,7 +1,8 @@
 class MedicalRecordTemplate
   include Mongoid::Document
+#   include Mongoid::Tenant
   embeds_many :question
-   
+  has_many :medical_record , dependent: :destroy
   accepts_nested_attributes_for :question  ,:reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   belongs_to :hospital
   before_save :remove_answer,:numbered_question

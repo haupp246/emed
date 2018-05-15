@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/elia/activeadmin-mongoid.git
+  revision: 3ff2ade41f1a73c29644ef4e331a4a490f8ba222
+  branch: rails4-mongoid5
+  specs:
+    activeadmin-mongoid (0.2.1)
+      activeadmin (>= 0.6.1, < 2)
+      mongoid (~> 5.0)
+      rails (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -20,6 +30,18 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    activeadmin (1.2.1)
+      arbre (>= 1.1.1)
+      coffee-rails
+      formtastic (~> 3.1)
+      formtastic_i18n
+      inherited_resources (~> 1.7)
+      jquery-rails (>= 4.2.0)
+      kaminari (>= 0.15, < 2.0)
+      railties (>= 4.2, < 5.2)
+      ransack (~> 1.3)
+      sass (~> 3.1)
+      sprockets (< 4.1)
     activejob (4.2.5)
       activesupport (= 4.2.5)
       globalid (>= 0.3.0)
@@ -36,6 +58,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    arbre (1.1.1)
+      activesupport (>= 3.0.0)
     arel (6.0.4)
     bcrypt (3.1.11)
     binding_of_caller (0.8.0)
@@ -43,7 +67,8 @@ GEM
     bson (4.3.0)
     bson_ext (1.5.1)
     builder (3.2.3)
-    byebug (10.0.0)
+    byebug (10.0.1)
+    cancancan (2.2.0)
     cocoon (1.2.11)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -63,11 +88,26 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
+    faraday (0.15.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
+    formtastic (3.1.5)
+      actionpack (>= 3.2.13)
+    formtastic_i18n (0.6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    has_scope (0.7.1)
+      actionpack (>= 4.1, < 5.2)
+      activesupport (>= 4.1, < 5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    inherited_resources (1.8.0)
+      actionpack (>= 4.2, <= 5.2)
+      has_scope (~> 0.6)
+      railties (>= 4.2, <= 5.2)
+      responders
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -76,7 +116,22 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
-    loofah (2.2.1)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
+    kaminari-mongoid (1.0.1)
+      kaminari-core (~> 1.0)
+      mongoid
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -93,13 +148,18 @@ GEM
       tzinfo (>= 0.3.37)
     mongoid-enum (0.4.0)
       mongoid (~> 5.0)
+    mongoid-multitenancy (1.2.0)
+      mongoid (>= 4.0)
     mongoid_auto_increment (0.1.4)
       mongoid (>= 2.0)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     origin (2.3.1)
     orm_adapter (0.5.0)
+    polyamorous (1.3.3)
+      activerecord (>= 3.0)
     rack (1.6.9)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -120,14 +180,20 @@ GEM
       activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     railties (4.2.5)
       actionpack (= 4.2.5)
       activesupport (= 4.2.5)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.0)
+    rake (12.3.1)
+    ransack (1.8.6)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -135,7 +201,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    sass (3.5.5)
+    sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -160,6 +226,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (3.15.0)
+      faraday (~> 0.10)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -177,29 +245,43 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    will_paginate (3.1.6)
+    will_paginate_mongoid (2.0.1)
+      mongoid
+      will_paginate (~> 3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeadmin (~> 1.1)
+  activeadmin-mongoid!
   bson_ext
   byebug
+  cancancan
   cocoon
   coffee-rails
   devise
+  faker
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari-mongoid
   mongoid
   mongoid-enum
+  mongoid-multitenancy (~> 1.2)
   mongoid_auto_increment
   rails (= 4.2.5)
+  ransack (< 1.8.7)
   sass-rails
   sdoc (~> 0.4.0)
   semantic-ui-sass
   spring
+  stripe
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  will_paginate (~> 3.1.0)
+  will_paginate_mongoid (~> 2.0, >= 2.0.1)
 
 BUNDLED WITH
    1.15.4

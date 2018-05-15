@@ -5,11 +5,13 @@ class HospitalsController < ApplicationController
   # GET /hospitals.json
   def index
     @hospitals = Hospital.all
+    authorize! :read, @hospital
   end
 
   # GET /hospitals/1
   # GET /hospitals/1.json
   def show
+    authorize! :read, @hospital
   end
 
   # GET /hospitals/new
@@ -19,6 +21,7 @@ class HospitalsController < ApplicationController
 
   # GET /hospitals/1/edit
   def edit
+    authorize! :update, @hospital
   end
 
   # POST /hospitals

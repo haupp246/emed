@@ -5,14 +5,17 @@ class MedicalRecordsController < ApplicationController
   # GET /medical_records
   # GET /medical_records.json
   def index
+   authorize! :read, @medical_record
     @template ||= MedicalRecordTemplate.find(params[:medical_record_template_id])
-    @medical_records = @template.medical_record.all
+  
     if params[:search].blank?
       # @patients = Patient.all
+      @count = @template.medical_record.all.count
       @medical_records = @template.medical_record.all.paginate(:page => params[:page], :per_page => 15) 
       # @patients = Patient.all.paginate(:page => params[:page], :per_page => 15) 
     else
       # @patients = Patient.search(params[:search])
+      @count = @template.medical_record.search(params[:search]).count
      @medical_records = @template.medical_record.search(params[:search]).paginate(:page => params[:page], :per_page => 15) 
     end
     
@@ -100,6 +103,6 @@ class MedicalRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medical_record_params
-      params.require(:medical_record).permit(:answer_id, :id, :_destroy,:patient_id,:answer_attributes => [ :id,:_destroy,:qtype, :short_answer,:sub_question_id,:sub_question_answer, :qid, :choice, :question_id, :question_content, :question, :check_box => []])
+      params.require(:medical_record).permit(:hospital_id, :answer_id, :id, :_destroy,:patient_id,:answer_attributes => [ :id,:_destroy,:qtype, :short_answer,:sub_question_id,:sub_question_answer, :qid, :choice, :question_id, :question_content, :question, :check_box => []])
     end
 end

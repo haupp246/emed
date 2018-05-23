@@ -13,6 +13,7 @@
       </div>
     </div>
   </div>
+Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds
 <h1>Listing Medical Records</h1>
 
 <table class="ui fixed striped sortable celled table">
@@ -43,6 +44,7 @@
     <% end %>
   </tbody>
 </table>
+<b>Total: <%= @count %></b>
 <%= will_paginate @medical_records %>
 <br>
 

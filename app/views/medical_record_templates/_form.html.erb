@@ -20,7 +20,10 @@
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
-  
+  <div class="field">
+    <%= f.label :department %><br>
+    <%= f.text_field :department %>
+  </div>
     <div class="ui segments mcquestion_fields">
       <%= f.fields_for :question do |builder| %>
         <%= render "question_fields", :f => builder %>

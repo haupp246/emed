@@ -53,10 +53,12 @@
     <%= f.label :phone %><br>
     <%= f.text_field :phone %>
   </div>
+  <% if current_page?(action: 'new') %>
   <div class="field">
     <%= f.label :id %><br>
     <%= f.text_field :id %>
   </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

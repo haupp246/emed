@@ -7,10 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/header' %>
-<div class="ui container">
 
-<%= yield %>
-</div>
+
+  <div class="pusher">
+    <%= render 'layouts/header'%>
+    <% if current_user %>
+    <div class="ui secondary labeled icon open button">
+        
+      <i class="align justify icon"></i>
+      Menu
+  </div>
+  <% end %>
+    <div class="ui container">
+      
+      <%= yield %>
+    </div>
+  </div>
+  
+  <%= render 'layouts/side_bar'%>
+
 </body>
 </html>

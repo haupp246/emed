@@ -1,6 +1,6 @@
 <div class='ui segment mc_questions'>
   
-  <%= f.label :content, "Question" %>  <%= link_to_remove_association "Remove question", f, {class: 'ui inverted red button',wrapper_class: 'mc_questions'} %><br />
+ <b><%= f.label :content, "Question" %> </b>  <%= link_to_remove_association "Remove question", f, {class: 'ui inverted red button',wrapper_class: 'mc_questions'} %><br />
   <%= f.text_area :content, :rows => 2 %><br />
   <div class= 'ui inline field'>
     <%= f.label :qtype, "Question type:" %>

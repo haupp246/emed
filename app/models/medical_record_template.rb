@@ -1,6 +1,7 @@
 class MedicalRecordTemplate
   include Mongoid::Document
 #   include Mongoid::Tenant
+  
   embeds_many :question
   has_many :medical_record , dependent: :destroy
   accepts_nested_attributes_for :question  ,:reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
@@ -12,6 +13,7 @@ class MedicalRecordTemplate
   
   field :name, type: String
   field :code, type: String
+  field :department, type: String
   
   def numbered_question
      i=1

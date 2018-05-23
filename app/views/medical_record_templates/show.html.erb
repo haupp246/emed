@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <p>
   <%# @medical_record_template.as_json(:except => :_id).merge('_id' => @medical_record_template.id).to_json %>
+  Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds
+  
 </p>
 <p>
   <strong>Hospital:</strong>
@@ -20,24 +22,35 @@
   <%= @medical_record_template.code %>
 </p>
 <p>
+  <strong>Department:</strong>
+  <%= @medical_record_template.department %>
+</p>
+<p>
     <strong>Question:</strong>
 </p>
 
 <% for question in @medical_record_template.question %>
-<p>
-  <%= question.qid %>. <%= question.content %> <br/>
+<p><b>
+  <%= question.qid %>. <%= question.content %> <br/></b>
     <% for multiple_choice_question_answer in question.multiple_choice_question_answer %>
       <%= multiple_choice_question_answer.aid %>. <%= multiple_choice_question_answer.content %>
+      
     <% end %>
     <br/>
     <% if question.sub_question %>
   
     <%= question.sub_question.content %>
     <% end %>
+    
 </p>
 <% end %>
+<b>Have <%= @medical_record_template.medical_record.count %> medical record </b>
+<%= link_to 'Record list', medical_record_template_medical_records_path(@medical_record_template) %>
+<br>
 <% if can? :update, @medical_record_template %>
 <%= link_to 'Create record', new_medical_record_template_medical_record_path(@medical_record_template) %>|
 <%= link_to 'Edit', edit_medical_record_template_path(@medical_record_template) %> |
 <% end %>
-<%= link_to 'Back', medical_record_templates_path(@medical_record_template) %>
+<%= link_to 'Back', medical_record_templates_path(@medical_record_template) %> 
+
+

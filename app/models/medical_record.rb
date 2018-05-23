@@ -4,7 +4,7 @@ class MedicalRecord
   embeds_many :answer
   validates_presence_of :answer
   validate :all_question_answered
-  belongs_to :patient
+  
   
   
   
@@ -16,15 +16,16 @@ class MedicalRecord
   end
   belongs_to :patient
   belongs_to :medical_record_template
-  
+  belongs_to :hospital
   
   field :rid, type: String
   field :created_at, type: DateTime
-  
+  field :patient_name, type: String
 
   def self.search(search)
     if search
-      any_of({:patient_id => search},{:id => search })
+     
+      any_of({:patient_id => search},{:id => search},{:patient_name => /#{search}/i})
     end
 
   end

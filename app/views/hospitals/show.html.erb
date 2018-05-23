@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
+Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds
+<div class='ui vertically divided grid'>
+<div class="two column row">
+      <div class="column">
+
 <p>
   <strong>Username</strong>
   <%= @hospital.user.email %>
@@ -18,7 +23,12 @@
   <%= @hospital.address %>
 </p>
 
+</div>
+
+ <div class="column">
+ 
 <p>
+  
   <strong>Phone:</strong>
   <%= @hospital.phone %>
 </p>
@@ -38,5 +48,21 @@
   <%= @hospital.email %>
 </p>
 
-<%= link_to 'Edit', edit_hospital_path(@hospital) %> |
-<%= link_to 'Back', hospitals_path %>
+</div>
+</div>
+</div>
+<div class="ui divider">
+  Medical record template: <%= @hospital.medical_record_template.count %><br/>
+  Medical record: <%= @hospital.medical_record.count %> <br/>
+  Patient :<%= @hospital.medical_record.distinct(:patient_id).count %> <br/>
+  <br/><br/>
+  
+</div>
+  <br/><br/>
+<div class="ui divider">
+  <% if can? :update, @hospital %>
+ <%= link_to 'Edit', edit_hospital_path(@hospital) %> 
+<% end %>
+  <br/><br/>
+  
+</div>

@@ -4,11 +4,14 @@ class PatientsController < ApplicationController
   # GET /patients
   # GET /patients.json
   def index
+    authorize! :read, @patient
     if params[:search].blank?
       # @patients = Patient.all
+      @count = Patient.all.count
       @patients = Patient.all.paginate(:page => params[:page], :per_page => 15) 
     else
       # @patients = Patient.search(params[:search])
+      @count = Patient.search(params[:search]).count
       @patients = Patient.search(params[:search]).paginate(:page =>params[:page], :per_page => 15)
     end
   end
@@ -16,6 +19,7 @@ class PatientsController < ApplicationController
   # GET /patients/1
   # GET /patients/1.json
   def show
+    authorize! :read, @patient
     @medical_records = @patient.medical_records
   end
 

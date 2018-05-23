@@ -15,5 +15,6 @@ class Hospital
   has_one :user,  dependent: :destroy
  
   has_many :medical_record_template, dependent: :destroy
+  has_many :medical_record, dependent: :destroy
   # has_tenant :medical_record_template
 end

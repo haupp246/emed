@@ -1,0 +1,25 @@
+<% if current_user && current_user.hospital %>
+<div class="ui left demo vertical inverted sidebar labeled icon menu">
+  
+    
+     <%= link_to current_user.hospital, class: "item" do %>
+        <i class="hospital icon"></i>
+        Hospital
+     <% end %>
+  
+     <%= link_to patients_path, class: "item" do %>
+            <i class="wheelchair icon"></i>
+            Patient
+         <% end %>
+     <%= link_to medical_record_templates_path, class: "item" do %>
+            <i class="file icon"></i>
+            Template
+         <% end %>
+</div>
+<script>
+$(".button.open").click(function(){
+  $('.ui.labeled.icon.sidebar').sidebar('toggle');
+});
+
+</script>
+<% end %>

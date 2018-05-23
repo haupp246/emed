@@ -21,6 +21,7 @@
 <% end %>
   <br>
   <h2><%= @medical_record.medical_record_template.name %><br></h2>
+   <%= f.hidden_field :hospital_id, value: @medical_record.medical_record_template.hospital.id %>
   <div class="ui segments">
   <% if current_page?(action: 'new') %>
      
@@ -31,11 +32,11 @@
       <%= question.qid %>
       <%= question.content %><br/> </h4>
       <p>
-     
-      
+          
+       
+         
           <%= builder.hidden_field :question_id, value: question.id.to_s %>
-          <%= builder.hidden_field :question_content, value: question.content %>
-          <%= builder.hidden_field :qtype, value: question.qtype %>
+     
         <% case question.qtype %>
          <% when :short_answer %>
         
@@ -43,7 +44,7 @@
                <% when :text %>
               <%= builder.text_field :short_answer %>
               <% when :number %>
-               <%= builder.number_field :short_answer %>
+               <%= builder.number_field :short_answer , step: "0.01" %>
               <% when :date %>
                 <%= builder.date_field :short_answer %>  
                 
@@ -64,7 +65,7 @@
                       <% when :text %>
                       <%= builder.text_field :sub_question_answer %>
                       <% when :number %>
-                       <%= builder.number_field :sub_question_answer %>
+                       <%= builder.number_field :sub_question_answer  , step: "0.01"%>
                       <% when :date %>
                         <%= builder.date_field :sub_question_answer %>  
                         
@@ -92,11 +93,10 @@
       <%= question.qid %>
       <%= question.content %><br/></h4>
       <p>
-     
-      
+
+           <%= builder.hidden_field :hospital_id, value: @medical_record.medical_record_template.hospital.id %>
           <%= builder.hidden_field :question_id, value: question.id.to_s %>
-          <%= builder.hidden_field :question_content, value: question.content %>
-          <%= builder.hidden_field :qtype, value: question.qtype %>
+    
         <% case question.qtype %>
          <% when :short_answer %>
          
@@ -104,7 +104,7 @@
                <% when :text %>
               <%= builder.text_field :short_answer %>
               <% when :number %>
-               <%= builder.number_field :short_answer %>
+               <%= builder.number_field :short_answer, step: "0.01" %>
               <% when :date %>
                 <%= builder.date_field :short_answer %>  
                 
@@ -127,7 +127,7 @@
                       <% when :text %>
                       <%= builder.text_field :sub_question_answer %>
                       <% when :number %>
-                       <%= builder.number_field :sub_question_answer %>
+                       <%= builder.number_field :sub_question_answer,  step: "0.01" %>
                       <% when :date %>
                         <%= builder.date_field :sub_question_answer %>  
                         

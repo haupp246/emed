@@ -12,4 +12,5 @@ class Question
   field :content, type: String
   enum :qtype, [ :multiple_choice, :short_answer, :check_box ]
   enum :atype, [ :text, :number, :date]
+
 end

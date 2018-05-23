@@ -16,12 +16,15 @@ class Ability
       if model.present?  # additional permissions for logged in users (they can manage their posts)
       can :manage, Patient, _id: model.id 
       can :read, MedicalRecord, patient_id: model.id
+      can :read, Patient, _id: model.id
       end
     when User
+      can :read, :all
       can :manage, MedicalRecordTemplate, hospital_id: model.hospital.id
       can :manage, Hospital, _id: model.hospital.id
-      can :manage, MedicalRecord, medical_record_template: {hospital_id: model.hospital.id}
       can :read, MedicalRecord
+      can :manage, MedicalRecord, medical_record_template: {hospital_id: model.hospital.id}
+      can :manage, Patient
     else
       can :read, :all
    

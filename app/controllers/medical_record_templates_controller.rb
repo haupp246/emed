@@ -6,16 +6,19 @@ class MedicalRecordTemplatesController < ApplicationController
   # GET /medical_record_templates
   # GET /medical_record_templates.json
   def index
+    
     @medical_record_templates = current_user.hospital.medical_record_template.all
   end
 
   # GET /medical_record_templates/1
   # GET /medical_record_templates/1.json
   def show
+   
   end
 
   # GET /medical_record_templates/new
   def new
+    
     @medical_record_template = current_user.hospital.medical_record_template.new
 
   end
@@ -27,6 +30,7 @@ class MedicalRecordTemplatesController < ApplicationController
   # POST /medical_record_templates
   # POST /medical_record_templates.json
   def create
+    
     @medical_record_template = current_user.hospital.medical_record_template.new(medical_record_template_params)
    
     respond_to do |format|
@@ -46,6 +50,7 @@ class MedicalRecordTemplatesController < ApplicationController
   # PATCH/PUT /medical_record_templates/1
   # PATCH/PUT /medical_record_templates/1.json
   def update
+  
     respond_to do |format|
       if @medical_record_template.update(medical_record_template_params)
         format.html { redirect_to @medical_record_template, notice: 'Medical record template was successfully updated.' }
@@ -77,7 +82,7 @@ class MedicalRecordTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medical_record_template_params
-      params.require(:medical_record_template).permit(:name, :code, :question_attributes => [:qtype,:atype, :content, :qid,:_destroy,:id,:sub_question_attributes => [:id,:_destroy,:content,:atype,:qtype], :multiple_choice_question_answer_attributes => [:id,:_destroy,:multiple_choice_question_answer_type, :content, :aid]])
+      params.require(:medical_record_template).permit(:name, :code, :department, :question_attributes => [:qtype,:atype, :content, :qid,:_destroy,:id,:sub_question_attributes => [:id,:_destroy,:content,:atype,:qtype], :multiple_choice_question_answer_attributes => [:id,:_destroy,:multiple_choice_question_answer_type, :content, :aid]])
     end
     
     

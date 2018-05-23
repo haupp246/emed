@@ -7,7 +7,8 @@ class HospitalsController < ApplicationController
     @hospitals = Hospital.all
     authorize! :read, @hospital
   end
-
+  def dashboard
+  end
   # GET /hospitals/1
   # GET /hospitals/1.json
   def show

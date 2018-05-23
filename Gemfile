@@ -36,8 +36,9 @@ gem 'kaminari-mongoid'
 gem 'faker'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate_mongoid', '~> 2.0', '>= 2.0.1'
-gem 'stripe'
+
 gem "cancancan"
+
 
 
 gem 'semantic-ui-sass'

@@ -4,7 +4,7 @@
   <div class="right menu">
 <% if user_signed_in? || patient_signed_in? %>
 
-  <% if current_user.hospital %>
+  <% if current_user && current_user.hospital %>
      
         <div class="ui dropdown item" tabindex="0">
        <%= current_user.hospital.name %>
@@ -45,7 +45,7 @@
     </div>
     
   </div>
-</div>
+
 <script>
  $(document).ready(function() {
     $('.ui.dropdown').dropdown();

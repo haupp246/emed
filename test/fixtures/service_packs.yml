@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sptype: MyString
+  duedate: 2018-05-28
+  content: MyString
+
+two:
+  name: MyString
+  sptype: MyString
+  duedate: 2018-05-28
+  content: MyString

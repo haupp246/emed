@@ -4,8 +4,9 @@ class HospitalsController < ApplicationController
   # GET /hospitals
   # GET /hospitals.json
   def index
-    @hospitals = Hospital.all
     authorize! :read, @hospital
+    @hospitals = Hospital.all
+
   end
   def dashboard
   end

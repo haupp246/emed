@@ -3,7 +3,7 @@ class Hospital
   # include Mongoid::Tenancy
   # store_in database: ->{ Thread.current[:database] }
   # tenant_key :url
-  
+
   field :code, type: String
   field :name, type: String
   field :address, type: String
@@ -13,8 +13,10 @@ class Hospital
   field :email, type: String
   
   has_one :user,  dependent: :destroy
- 
+  has_one :service_pack, dependent: :destroy
   has_many :medical_record_template, dependent: :destroy
   has_many :medical_record, dependent: :destroy
   # has_tenant :medical_record_template
+
+
 end

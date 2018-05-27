@@ -1,5 +1,5 @@
 class MedicalRecordsController < ApplicationController
-  
+  require "benchmark"
   before_action :set_medical_record, only: [:show, :edit, :update, :destroy]
 
   # GET /medical_records
@@ -10,12 +10,16 @@ class MedicalRecordsController < ApplicationController
   
     if params[:search].blank?
       # @patients = Patient.all
-      @count = @template.medical_record.all.count
+      @time = Benchmark.measure do
+        @count = @template.medical_record.all.count
+      end
       @medical_records = @template.medical_record.all.paginate(:page => params[:page], :per_page => 15) 
       # @patients = Patient.all.paginate(:page => params[:page], :per_page => 15) 
     else
       # @patients = Patient.search(params[:search])
+      @time = Benchmark.measure do
       @count = @template.medical_record.search(params[:search]).count
+      end
      @medical_records = @template.medical_record.search(params[:search]).paginate(:page => params[:page], :per_page => 15) 
     end
     

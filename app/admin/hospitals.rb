@@ -2,7 +2,8 @@ ActiveAdmin.register Hospital do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :id, :name, :code, :address, :phone, :fax, :website, :email
+    actions :all
+    permit_params :id, :name, :code, :address, :phone, :fax, :website, :email
 #
 # or
 #
@@ -10,21 +11,30 @@ permit_params :id, :name, :code, :address, :phone, :fax, :website, :email
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
-# end 
-index do
-    column :id
-    column :code
-    column :name
-    column :address
-    actions
-end
+# end
+#
 
-   config.filters = false
-   
-controller do
+    index do
+        column :id
+        column :code
+        column :name
+        column :address
+        actions
+    end
+    action_item :approve, method: :put, only: :edit do
 
-    
+    end
+    member_action :lock, method: :put do
+        resource.lock!
+        redirect_to resource_path, notice: "Locked!"
+    end
+    config.filters = false
 
-end
+    controller do
+
+
+    end
+
+
 
 end

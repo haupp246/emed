@@ -14,6 +14,8 @@ class Hospital
   
   has_one :user,  dependent: :destroy
   has_one :service_pack, dependent: :destroy
+  has_many :service_request, dependent: :destroy
+  accepts_nested_attributes_for :service_request  ,:reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   has_many :medical_record_template, dependent: :destroy
   has_many :medical_record, dependent: :destroy
   # has_tenant :medical_record_template

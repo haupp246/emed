@@ -1,0 +1,18 @@
+<h1><%= @hospital.name %></h1>
+
+<% if @hospital.service_pack %>
+  WOW
+<% else %>
+  you are free
+<% end %>
+<br/>
+
+
+<div class="ui divider">
+  <% if can? :update, @hospital %>
+    <%= link_to 'Back', hospital_path(@hospital) %>||
+    <%= link_to 'New Service request', new_hospital_service_request_path(@hospital) %>
+  <% end %>
+  <br/><br/>
+
+</div>

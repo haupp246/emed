@@ -1,5 +1,5 @@
 class HospitalsController < ApplicationController
-  before_action :set_hospital, only: [:show, :edit, :update, :destroy]
+  before_action :set_hospital, only: [:show, :edit, :update, :destroy, :registration]
 
   # GET /hospitals
   # GET /hospitals.json
@@ -8,7 +8,9 @@ class HospitalsController < ApplicationController
     @hospitals = Hospital.all
 
   end
-  def dashboard
+  def service
+    @hospital = Hospital.find(params[:id])
+    @hospital.service_request.new
   end
   # GET /hospitals/1
   # GET /hospitals/1.json
@@ -76,6 +78,6 @@ class HospitalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hospital_params
-      params.require(:hospital).permit(:code, :name, :address, :phone, :fax, :website, :email)
+      params.require(:hospital).permit(:code, :name, :address, :phone, :fax, :website, :email, :service_request_attribute=>[:id, :time, :sp_type])
     end
 end

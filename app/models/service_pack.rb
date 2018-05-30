@@ -7,5 +7,5 @@ class ServicePack
   field :startdate, type: Date
   field :duedate, type: Date
   field :content, type: String
-  enum :qtype, [ :free,:premium ]
+  enum :sp_type, [ :free,:premium ]
 end

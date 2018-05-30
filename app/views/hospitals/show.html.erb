@@ -61,7 +61,8 @@ Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds
   <br/><br/>
 <div class="ui divider">
   <% if can? :update, @hospital %>
- <%= link_to 'Edit', edit_hospital_path(@hospital) %> 
+ <%= link_to 'Edit', edit_hospital_path(@hospital) %>||
+  <%= link_to 'Service', service_hospital_path(@hospital) %>
 <% end %>
   <br/><br/>
   

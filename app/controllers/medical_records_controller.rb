@@ -20,7 +20,7 @@ class MedicalRecordsController < ApplicationController
       @time = Benchmark.measure do
       @count = @template.medical_record.search(params[:search]).count
       end
-     @medical_records = @template.medical_record.search(params[:search]).paginate(:page => params[:page], :per_page => 15) 
+     @medical_records = @template.medical_record.search(params[:search]).paginate(:page => params[:page], :per_page => 15)
     end
     
   end

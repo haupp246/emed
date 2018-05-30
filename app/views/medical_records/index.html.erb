@@ -13,8 +13,9 @@
       </div>
     </div>
   </div>
-
-<%= @time %>
+<%= @count %> results found.<br/>
+Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds <br/>
+Query in <%= sprintf('%.5f', @time ) %> seconds
 <h1>Listing Medical Records</h1>
 
 <table class="ui fixed striped sortable celled table">

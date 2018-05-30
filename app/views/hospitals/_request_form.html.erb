@@ -1,0 +1,14 @@
+
+<%= form_for([@hospital]) do |f| %>
+
+  <%= f.fields_for :service_request do |builder| %>
+    <h1>LMAO</h1>
+    <%= builder.label :sp_type, "Service pack:" %>
+    <%= builder.select :sp_type,[['Free',:free],['Premium', :premium]] %>
+    <%= builder.label :time, "Time:" %>
+    <%= builder.number_field :time %> days
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

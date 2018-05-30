@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
-
+  require "benchmark"
   # GET /patients
   # GET /patients.json
   def index
@@ -8,10 +8,16 @@ class PatientsController < ApplicationController
     if params[:search].blank?
       # @patients = Patient.all
       @count = Patient.all.count
-      @patients = Patient.all.paginate(:page => params[:page], :per_page => 15) 
+      @patients = Patient.all.paginate(:page => params[:page], :per_page => 15)
+      @time = Benchmark.realtime do
+        @count = Patient.all.count
+      end
     else
       # @patients = Patient.search(params[:search])
-      @count = Patient.search(params[:search]).count
+      @time = Benchmark.realtime do
+        @count =  Patient.search(params[:search]).count
+    end
+
       @patients = Patient.search(params[:search]).paginate(:page =>params[:page], :per_page => 15)
     end
   end

@@ -18,14 +18,17 @@ ActiveAdmin.register ServiceRequest do
     column :id
     column :created_at
     column :hospital_id
+    column :hospital do |service_request|
+      service_request.hospital.name
+    end
     column :sp_type
     column :time
     column :status
     column :replied_at
     actions do |service_request|
       if service_request.status == :pending
-        item 'Approve', approve_admin_service_request_path(service_request)
-        item 'Decline', decline_admin_service_request_path(service_request)
+        item 'Approve', approve_admin_service_request_path(service_request), :class=> "button"
+        item 'Decline', decline_admin_service_request_path(service_request), :class=> "button"
       end
     end
 
@@ -34,7 +37,7 @@ ActiveAdmin.register ServiceRequest do
 
   end
   member_action :decline do
-    p '1'
+
   end
 
   config.filters = false

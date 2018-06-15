@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Listing Service Requests</h1>
 
@@ -10,13 +10,13 @@
       <th>Created at</th>
       <th>Status</th>
       <th>Replied at</th>
-      <th colspan="1"></th>
+
 
     </tr>
   </thead>
 
   <tbody>
-  <%= @service_requests.count %>
+
     <% @service_requests.each do |service_request| %>
       <tr>
         <td><%= service_request.sp_type %></td>
@@ -24,7 +24,7 @@
         <td><%= service_request.created_at %></td>
         <td><%= service_request.status %></td>
         <td><%= service_request.replied_at %></td>
-        <td><%= link_to 'Show', [service_request.hospital,service_request] %></td>
+
 
       </tr>
     <% end %>

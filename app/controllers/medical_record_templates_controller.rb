@@ -15,6 +15,9 @@ class MedicalRecordTemplatesController < ApplicationController
   def show
    
   end
+  def stats
+    @medical_record_template = MedicalRecordTemplate.find(params[:id])
+  end
 
   # GET /medical_record_templates/new
   def new

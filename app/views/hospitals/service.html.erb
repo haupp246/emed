@@ -1,10 +1,25 @@
 <h1><%= @hospital.name %></h1>
-
+<div class="ui card center">
 <% if @hospital.service_pack %>
-  WOW
+ Service pack: <%= @hospital.service_pack.sp_type.upcase%><br/>
+    <% if @hospital.service_pack.sp_type != :free %>
+ Due date: <%= @hospital.service_pack.duedate.to_date %><br/>
+      <b>
+        Patient limit: 50000 <br/>
+        Medical Record limit: 100000 <br/>
+        Medical Record Template limit: 100 <br/>
+      </b>
+      <% else %>
+      <b>
+        Patient limit: 5000 <br/>
+        Medical Record limit: 10000 <br/>
+        Medical Record Template limit: 10 <br/>
+      </b>
+      <% end %>
 <% else %>
-  you are free
+  <h2>You haven't registered a service yet!</h2>
 <% end %>
+</div>
 <br/>
 
 

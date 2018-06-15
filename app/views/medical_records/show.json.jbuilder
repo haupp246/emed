@@ -13,11 +13,18 @@ json.medical_record do
     json.patient do
         json.patient_id @medical_record.patient_id.to_s
         json.name @medical_record.patient.name
+        json.gender @medical_record.patient.gender
+        json.date_of_birth @medical_record.patient.dob
+        json.address @medical_record.patient.address
+        json.workplace @medical_record.patient.workplace
+        json.phone @medical_record.patient.phone
+        json.oversea @medical_record.patient.oversea
+        json.ethnic @medical_record.patient.ethnic
     end
     json.content do
         json.array! @answer do |answer|
             question = @medical_record.medical_record_template.question.find( answer.question_id )
-            json.question_id answer.question_id.to_s
+
             json.question_content question.content
             json.question_type question.qtype
           

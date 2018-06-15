@@ -1,5 +1,5 @@
 
-<p id="notice"><%= notice %></p>
+
   
   <div class="ui secondary menu">
     <div class="right menu">
@@ -16,8 +16,7 @@
     </div>
   </div>
 <%= @count %> results found.<br/>
-Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds <br/>
-Query in <%= sprintf('%.5f', @time ) %> seconds
+
 <h1>Listing Patients</h1>
 
 <table class="ui fixed striped sortable celled table">
@@ -61,5 +60,8 @@ Query in <%= sprintf('%.5f', @time ) %> seconds
 <br>
 <b>Total: <%= @count %></b>
 <br>
+Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds <br/>
+Query in <%= sprintf('%.5f', @time ) %> seconds
+<br/>
 <%= will_paginate @patients %>
 <%= link_to 'New Patient', new_patient_path, :class => "ui teal button" %>

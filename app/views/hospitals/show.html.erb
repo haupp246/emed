@@ -1,69 +1,69 @@
-<p id="notice"><%= notice %></p>
+
 Page Rendered in <%= sprintf('%.3f', (Time.now.to_f - @start_time) ) %> seconds
 <div class='ui vertically divided grid'>
-<div class="two column row">
-      <div class="column">
+  <div class="two column row">
+    <div class="column">
 
-<p>
-  <strong>Username</strong>
-  <%= @hospital.user.email %>
-</p>
-<p>
-  <strong>Code:</strong>
-  <%= @hospital.code %>
-</p>
+      <p>
+        <strong>Username</strong>
+        <%= @hospital.user.email %>
+      </p>
+      <p>
+        <strong>Code:</strong>
+        <%= @hospital.code %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @hospital.name %>
-</p>
+      <p>
+        <strong>Name:</strong>
+        <%= @hospital.name %>
+      </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @hospital.address %>
-</p>
+      <p>
+        <strong>Address:</strong>
+        <%= @hospital.address %>
+      </p>
 
-</div>
+    </div>
 
- <div class="column">
- 
-<p>
-  
-  <strong>Phone:</strong>
-  <%= @hospital.phone %>
-</p>
+    <div class="column">
 
-<p>
-  <strong>Fax:</strong>
-  <%= @hospital.fax %>
-</p>
+      <p>
 
-<p>
-  <strong>Website:</strong>
-  <%= @hospital.website %>
-</p>
+        <strong>Phone:</strong>
+        <%= @hospital.phone %>
+      </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @hospital.email %>
-</p>
+      <p>
+        <strong>Fax:</strong>
+        <%= @hospital.fax %>
+      </p>
 
-</div>
-</div>
+      <p>
+        <strong>Website:</strong>
+        <%= @hospital.website %>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <%= @hospital.email %>
+      </p>
+
+    </div>
+  </div>
 </div>
 <div class="ui divider">
   Medical record template: <%= @hospital.medical_record_template.count %><br/>
   Medical record: <%= @hospital.medical_record.count %> <br/>
   Patient :<%= @hospital.medical_record.distinct(:patient_id).count %> <br/>
   <br/><br/>
-  
+
 </div>
-  <br/><br/>
+<br/><br/>
 <div class="ui divider">
   <% if can? :update, @hospital %>
- <%= link_to 'Edit', edit_hospital_path(@hospital) %>||
-  <%= link_to 'Service', service_hospital_path(@hospital) %>
-<% end %>
+    <%= link_to 'Edit', edit_hospital_path(@hospital) %>||
+    <%= link_to 'Service', service_hospital_path(@hospital) %>
+  <% end %>
   <br/><br/>
-  
+
 </div>

@@ -6,6 +6,6 @@ class ServicePack
   field :name, type: String
   field :startdate, type: Date
   field :duedate, type: Date
-  field :content, type: String
+
   enum :sp_type, [ :free,:premium ]
 end

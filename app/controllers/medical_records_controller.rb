@@ -10,14 +10,14 @@ class MedicalRecordsController < ApplicationController
   
     if params[:search].blank?
       # @patients = Patient.all
-      @time = Benchmark.measure do
+      @time = Benchmark.realtime do
         @count = @template.medical_record.all.count
       end
       @medical_records = @template.medical_record.all.paginate(:page => params[:page], :per_page => 15) 
       # @patients = Patient.all.paginate(:page => params[:page], :per_page => 15) 
     else
       # @patients = Patient.search(params[:search])
-      @time = Benchmark.measure do
+      @time = Benchmark.realtime do
       @count = @template.medical_record.search(params[:search]).count
       end
      @medical_records = @template.medical_record.search(params[:search]).paginate(:page => params[:page], :per_page => 15)

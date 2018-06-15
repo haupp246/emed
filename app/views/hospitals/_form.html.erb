@@ -1,3 +1,4 @@
+<div class="ui form">
 <%= form_for(@hospital) do |f| %>
   <% if @hospital.errors.any? %>
     <div id="error_explanation">
@@ -40,6 +41,7 @@
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'ui primary button ' %>
   </div>
 <% end %>
+</div>

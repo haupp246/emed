@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :patients
   resources :medical_record_templates do
     resources :medical_records
+    member do
+      get 'stats'
+    end
   end
+
   resources :hospitals do
     member do
       get 'service'

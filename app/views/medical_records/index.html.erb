@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
   <div class="ui secondary menu">
     <div class="right menu">
       <div class="item" >
@@ -49,6 +49,7 @@ Query in <%= sprintf('%.5f', @time ) %> seconds
 <b>Total: <%= @count %></b>
 <%= will_paginate @medical_records %>
 <br>
-
-<%= link_to 'New Medical record', new_medical_record_template_medical_record_path %>
+<div class="ui divider">
+<%= link_to 'New Medical record', new_medical_record_template_medical_record_path %>|
 <%= link_to 'Back to template', medical_record_template_path(params[:medical_record_template_id]) %>
+</div>

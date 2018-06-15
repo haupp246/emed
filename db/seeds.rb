@@ -7,29 +7,29 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 include Faker
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 start_time = Time.now.to_f
-# time = Benchmark.measure do
-# 15000.times do
-#         new_id = Faker::Number.unique.number(8).to_str
-#     Patient.create(
-#              name: Faker::Name.name,
-#              dob: Faker::Date.birthday(1, 100),
-#              job: Faker::Job.field,
-#              ethnic: ['Kinh','Mông','Tày','Mường','Thái','Hoa','Khác'].sample,
-#              oversea: Faker::Address.country,
-#              address: Faker::Address.street_address + Faker::Address.city,
-#             workplace: Faker::Company.name,
-#              id: new_id,
-#             gender: [ :male, :female ].sample,
-#             phone: '0' + Faker::Number.unique.number(10).to_str,
-#             email: new_id + '@emed.com',
-#             password: "123456",
-#             password_confirmation: "123456"
-#         )
-#   end
-# end
-# p time
+time = Benchmark.measure do
+25000.times do
+        new_id = Faker::Number.unique.number(8).to_str
+    Patient.create(
+             name: Faker::Name.name,
+             dob: Faker::Date.birthday(1, 100),
+             job: Faker::Job.field,
+             ethnic: ['Kinh','Mông','Tày','Mường','Thái','Hoa','Kinh','Kinh','Kinh','Kinh','Kinh','Kinh'].sample,
+             oversea: Faker::Address.country,
+             address: Faker::Address.street_address + Faker::Address.city,
+            workplace: Faker::Company.name,
+             id: new_id,
+            gender: [ :male, :female ].sample,
+            phone: '0' + Faker::Number.unique.number(10).to_str,
+            email: new_id + '@emed.com',
+            password: "123456",
+            password_confirmation: "123456"
+        )
+  end
+end
+p time
 #
 # 10000.times do
 #     patient = Patient.all.sample

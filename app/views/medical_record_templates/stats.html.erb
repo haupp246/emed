@@ -2,14 +2,14 @@
 <p>
   <%# @medical_record_template.as_json(:except => :_id).merge('_id' => @medical_record_template.id).to_json %>
 
-  
+
 </p>
 <p>
   <strong>Hospital:</strong>
   <% if @medical_record_template.hospital %>
-  <%= @medical_record_template.hospital.name %>
+    <%= @medical_record_template.hospital.name %>
   <% else %>
-  1
+    1
   <% end %>
 </p>
 <p>
@@ -26,35 +26,38 @@
   <%= @medical_record_template.department %>
 </p>
 <p>
-    <strong>Question:</strong>
+  <strong>Question:</strong>
 </p>
 <% total =  @medical_record_template.medical_record.count %>
 <% for question in @medical_record_template.question %>
-<p><b>
-  <%= question.qid %>. <%= question.content %> <br/></b>
+  <p><b>
+    <%= question.qid %>. <%= question.content %> <br/></b>
     <% for multiple_choice_question_answer in question.multiple_choice_question_answer %>
       <%= multiple_choice_question_answer.aid %>. <%= multiple_choice_question_answer.content %>
 
+      <% if total!=0 %>
+        <% count = MedicalRecord.where({answer: {'$elemMatch'=>{question_id: question.id, choice: multiple_choice_question_answer.content}}}).count %>
+        <%= sprintf('%.2f', (count/total.to_f)*100) %> %
+      <% end %>
     <% end %>
     <br/>
     <% if question.sub_question %>
-  
-    <%= question.sub_question.content %>
+
+      <%= question.sub_question.content %>
     <% end %>
 
-</p>
+  </p>
 <% end %>
 <div class="ui divider">
 <b>Have <%= total %> medical record </b>
 
-<%= link_to 'Record list', medical_record_template_medical_records_path(@medical_record_template) %>|
-  <%= link_to 'Statistic', stats_medical_record_template_path(@medical_record_template) %>
-</br>
+<%= link_to 'Record list', medical_record_template_medical_records_path(@medical_record_template) %>
+<br>
 <% if can? :update, @medical_record_template %>
-<%= link_to 'Create record', new_medical_record_template_medical_record_path(@medical_record_template) %>|
-<%= link_to 'Edit', edit_medical_record_template_path(@medical_record_template) %> |
+  <%= link_to 'Create record', new_medical_record_template_medical_record_path(@medical_record_template) %>|
+  <%= link_to 'Edit', edit_medical_record_template_path(@medical_record_template) %> |
 <% end %>
-<%= link_to 'Back', medical_record_templates_path(@medical_record_template) %>
+<%= link_to 'Back', @medical_record_template %>
 </div>
 <br/>
 <br/>
